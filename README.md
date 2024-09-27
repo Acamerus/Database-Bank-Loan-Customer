@@ -9,6 +9,7 @@ II.	ER Model using UML Notation
  
 This is our first draft of the ER diagram. There were a few issues with it. The first issue that was solved was that we made it smaller to keep it more simple. The second and most important issue was that it was not in the standard UML notation. The next image is our final draft of the ER model that solved both problems.
 
+![image](https://github.com/user-attachments/assets/dbe35df8-497f-44d3-b6ef-3e29493ceb58)
 
 
 
