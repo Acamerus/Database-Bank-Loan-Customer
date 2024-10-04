@@ -9,12 +9,14 @@ II.	ER Model using UML Notation
  
 This is our first draft of the ER diagram. There were a few issues with it. The first issue that was solved was that we made it smaller to keep it more simple. The second and most important issue was that it was not in the standard UML notation. The next image is our final draft of the ER model that solved both problems.
 
-![image](https://github.com/user-attachments/assets/dbe35df8-497f-44d3-b6ef-3e29493ceb58)
+![image](https://github.com/user-attachments/assets/6d465b53-f9ff-46d2-8246-cc4befc81070)
+
 
 
 
 
 Final ER Model
+![image](https://github.com/user-attachments/assets/a3592653-994d-4652-8a83-a04b520e4038)
  
 Relationship Sentences:
 
@@ -38,9 +40,11 @@ Fee Penalty (Fee penalty Id (key), Loan Id (foreign key), Fee penalty type, Amou
 Repayment Schedule (Repayment schedule Id (key), Loan Id (foreign key), Payment due date, Payment amounts, Remaining balance, Payment status)
  
 IV.	Normalization
- 
+ ![image](https://github.com/user-attachments/assets/84a0a3c7-2075-4dbb-9d2c-007e86a01bd0)
+
 	We ran into an error when importing our data into Access. Our 0s have turned into a -00, in the FeePenalty and RepaymentSchedule tables. In order to fix this issue we had to go back to the excel file. After some editing and taking some time to play with the data. The problem that was found was that the numbers in the column are not in the same number format. So, we adjusted the column and made every number in the column the same number format and it fixed our issue.
- 
+ ![image](https://github.com/user-attachments/assets/d19bd364-b8ca-4de9-8547-68145546beba)
+
 Here, Our Customer table was in an unnormalized normal form. In order to get it into 1st normal form. We had to make the Address column into its atomic value. In the screenshot above, the address is all in one column, it needs to be separated into Street Address, City,  State, and Zip code. After fixing this issue, we now have all tables in normal form as shown below.
 
 1. Account Relation
@@ -61,7 +65,9 @@ Normalization:
 Relation:
 -	Customer (CustomerID (key), FirstName, LastName, ContactInformation, StreetAddress, City, State, ZipCode, SocialSecurityNumber, EmploymentDetails, IncomeDetails, CreditScore, RiskCategoryGrading, AssessmentDate)
 Sample Data:
- 
+![image](https://github.com/user-attachments/assets/e4c24439-3c28-4f0d-9c99-a3db9aff1bf9)
+
+
 Key:
 -	CustomerID
 Functional Dependencies (FDs):
@@ -78,7 +84,8 @@ Normalization:
 Relation:
 -	FeePenaltyID → (FeePenaltyID (key), LoanID (fk), FeePenaltyType, Amount, DueDate, FeePaymentStatus)
 Sample Data:
- 
+ ![image](https://github.com/user-attachments/assets/f2585e15-9f42-4e38-933a-517e2ee179ea)
+
 Key:
 -	FeePenaltyID
 Functional Dependencies (FDs):
@@ -95,7 +102,9 @@ Normalization:
 Relation:
 -	Loan (LoanID (key), CustomerID (fk), LoanType, LoanTerm, InterestRate, LoanStatus, ApplicationDate, ReviewDate)
 Sample Data:
- 
+![image](https://github.com/user-attachments/assets/a4e9f12a-52e5-49ea-9deb-0863754db83d)
+
+
 Key:
 -	LoanID
 Functional Dependencies (FDs):
@@ -109,7 +118,9 @@ Normalization:
 Relation:
 -	RepaymentSchedule (RepaymentID (key), LoanID (fk), PaymentDueDate, PaymentAmounts, RemainingBalance, LoanPaymentStatus)
 Sample Data:
- 
+![image](https://github.com/user-attachments/assets/94d59524-ba3e-4949-ab5d-a80da204396d)
+
+
 Key:
 -	RepaymentScheduleID
 Functional Dependencies (FDs):
@@ -126,7 +137,8 @@ Relation:
 
 
 Sample Data:
- 
+ ![image](https://github.com/user-attachments/assets/eed47be8-7732-4a55-88d7-24cee2589bdc)
+
 Key:
 -	TransactionID
 Functional Dependencies (FDs):
@@ -295,7 +307,8 @@ INSERT INTO FeePenalty VALUES ('29','29','overdue','33.00','2024-06-15','paid');
 INSERT INTO FeePenalty VALUES ('30','30','early','0','2024-01-12','paid');
 
 Relationship View
- 
+ ![image](https://github.com/user-attachments/assets/fafd87be-0b0d-4ba4-96e3-f81096d6340d)
+
 
 
 Making Queries with SQL
@@ -303,6 +316,7 @@ Making Queries with SQL
 UPDATE RepaymentSchedule
 SET LoanPaymentStatus = 'completed'
 WHERE RemainingBalance = 0;
+![image](https://github.com/user-attachments/assets/3540a803-4e08-4875-bac9-fccc8666306b)
 
  
 This Query marks all loan payments as “completed” in the RepaymentSchedule table for entries where the RemainingBalance is 0 indicating that the loan has been fully paid off. This ensures that only fully settled loans are marked as completed in the database 
@@ -323,19 +337,25 @@ SET
     RiskCategoryGrading = 'deleted',
     AssessmentDate = #1900-01-01#
 WHERE CustomerID = [EnterCustomerID];
+![image](https://github.com/user-attachments/assets/aa45abb8-28db-4df4-8413-91c2dfdb19e7)
 
  
 This query updates specific fields in the Customer table for customers identified by CustomerID. It replaces personal information such as the first name, last name, contact details, address, and risk category with the “deleted”. While creating the query we encounter an issue with certain columns requiring numerical values or date format so we created 0 and 1900-01-01 as the default deleted option 
- 
+ ![image](https://github.com/user-attachments/assets/704e1aa6-8ad5-4226-b193-41856ea1e49e)
+![image](https://github.com/user-attachments/assets/01096d32-f671-40ff-b4b4-86427480562d)
+
  
 VI.	Database Application
 
 Navigation Form
- 
+ ![image](https://github.com/user-attachments/assets/6373321d-9bc3-4418-926b-01a72b2adcea)
+
 All the tables, queries, forms and reports can be seen on the left- hand side of the database. Above is the final navigation form. Next we move on to making all the forms.
 
 We proceeded to create a form using the Form Wizard. We selected the relevant fields from tables and then utilized the command button wizard to add functionality to our form. Next, we chose to add a button for record operation, specifically the “Add New Record” action. This allows users to easily add new repayment records through the form interface.
- 
+ ![image](https://github.com/user-attachments/assets/53e86295-74df-41ec-abcc-b8a522cf28b1)
+![image](https://github.com/user-attachments/assets/f8e481e6-7792-4c29-9d3c-a0c1fde7376c)
+
  
 We adjusted the size of the text boxes and labels to ensure that they fit within the designated space without overlapping. This involved resizing and repositioning the controls to create a clear and organized layout
 
@@ -348,29 +368,37 @@ We adjusted the size of the text boxes and labels to ensure that they fit within
 
 
 Customer Data Entry Form
+![image](https://github.com/user-attachments/assets/f66b0f2e-5e95-4429-b23f-a6d23c3394fd)
+
 The Customer Data Entry form is used to look up existing customers. We can also add new customers, as well edit existing customer information and save the information.
 Account Data Entry Form
- 
+ ![image](https://github.com/user-attachments/assets/6f3ead59-c4a5-4e16-a3c6-4d1ceab43a60)
+
 The Account Data Entry form can be used to update, edit and add accounts into the database.
 
 FeePenalty Data Entry Form
- 
+ ![image](https://github.com/user-attachments/assets/e06210d9-76d4-4ce1-81b4-334c7298bb9b)
+
 The Fee Penalty Data Entry form is used to query, update, or add a new fee penalty into the database.
 
 Loan Data Entry Form
- 
+ ![image](https://github.com/user-attachments/assets/d6cee955-2e45-4baa-abe1-c6fe58a6d590)
+
 The Loan Data Entry form is used to query, update, or add a new loan into the database.
 
 Repayment Schedule Data Entry Form
- 
+ ![image](https://github.com/user-attachments/assets/5d09af00-4f77-4fa7-890f-a2a7451308ab)
+
 The Repayment Data Entry form is used to query, update, or add a new loan into the repayment schedule table.
 
 Transaction History Data Entry Form
- 
+ ![image](https://github.com/user-attachments/assets/0c21a743-1af0-42fd-8f71-ae4a1e8c2981)
+
 The Transaction History Data Entry form is used to query, update, or add a new loan into the transaction history table.
 
 Customer Account Transactions Report
- 
+ ![image](https://github.com/user-attachments/assets/7e3574df-de25-4d6c-8a7c-3c37e8212915)
+
 This report shows all the customers (First and Last name), their account type, the date and amount of the transaction. It also shows what kind of transaction. This report allows us to see all the information together all in one print page instead of separately.
 
 The report was based on the following query:
@@ -378,7 +406,8 @@ SELECT Customer.FirstName, Customer.LastName, Account.AccountType, TransactionHi
 FROM (Customer INNER JOIN Account ON Customer.[CustomerID] = Account.[CustomerID]) INNER JOIN TransactionHistory ON Account.[AccountID] = TransactionHistory.[AccountID];
 
 Customer Loan Information Report
- 
+ ![image](https://github.com/user-attachments/assets/23049a81-5523-44ec-b4dc-78fa4013b147)
+
 
 This report shows all the customers (First and Last name), their contact information. It also shows the loan type, loan term, interest rate, and the status of the loan for each customer. This report allows us to see all the information together all in one print page instead of separately, for easy access.
 
@@ -386,7 +415,8 @@ The report was based on the following query:
 SELECT Customer.FirstName, Customer.LastName, Customer.ContactInformation, Loan.LoanType, Loan.LoanTerm, Loan.InterestRate, Loan.LoanStatus
 FROM Customer INNER JOIN Loan ON Customer.[CustomerID] = Loan.[CustomerID];
 Customer Loan Repayment Balance Report
- 
+ ![image](https://github.com/user-attachments/assets/001ac148-054f-4750-b7d2-87a576fbc98b)
+
 This report shows all the customers (First and Last name) who have an active loan. It provides the loan type, loan term and the status of the loan. It also shows when their payment is due and how much balance is remaining in the loan. This report allows us to see all the information together all in one print page instead of separately, for easy access.
 
 The report was based on the following query:
